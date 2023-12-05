@@ -58,7 +58,9 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_python_fastapi_registry"></a> [python\_fastapi\_registry](#module\_python\_fastapi\_registry) | ./modules/container_registry | n/a |
 
 ## Resources
 
