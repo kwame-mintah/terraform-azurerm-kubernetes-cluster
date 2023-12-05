@@ -7,6 +7,8 @@ locals {
   )
 }
 
+data "azurerm_client_config" "current" {}
+
 #tfsec appears to be scanning the wrong arguments as the names
 #have been updated / changed e.g. `api_server_access_profile` now contains
 #`authorized_ip_ranges` and `api_server_authorized_ip_ranges` is deperacated.
@@ -22,6 +24,12 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   local_account_disabled            = true
   sku_tier                          = var.sku_tier
   role_based_access_control_enabled = true
+
+  azure_active_directory_role_based_access_control {
+    managed                = true
+    tenant_id              = data.azurerm_client_config.current.tenant_id
+    admin_group_object_ids = [data.azurerm_client_config.current.object_id]
+  }
 
   api_server_access_profile {
     authorized_ip_ranges = [var.personal_ip_address]
@@ -57,7 +65,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   #checkov:skip=CKV_AZURE_227:Out of scope for demostration
 }
 
-resource "azurerm_role_assignment" "example" {
+resource "azurerm_role_assignment" "kubernetes_role" {
   principal_id                     = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
   scope                            = var.container_registry_id
