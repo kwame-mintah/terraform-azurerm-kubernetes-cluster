@@ -19,3 +19,6 @@ secrets.tfvars
 
 ## Terragrun cache
 .terragrunt-cache
+
+## Log files
+*.log
