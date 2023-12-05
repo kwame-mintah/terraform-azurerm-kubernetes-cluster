@@ -23,3 +23,16 @@ module "python_fastapi_registry" {
     var.tags
   )
 }
+
+module "kubernetes_cluster" {
+  source                = "./modules/kubernetes_service"
+  name                  = "fastapi-cluster"
+  location              = var.location
+  resource_group_name   = azurerm_resource_group.resource_group.name
+  container_registry_id = module.python_fastapi_registry.container_registry_id
+  personal_ip_address   = var.personal_ip_address
+
+  tags = merge(
+    var.tags
+  )
+}
