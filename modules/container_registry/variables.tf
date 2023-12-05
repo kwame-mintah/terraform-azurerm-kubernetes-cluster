@@ -41,7 +41,7 @@ EOF
 
 variable "sku_name" {
   description = <<-EOF
-  he SKU name of the container registry. Possible values are `Basic`, `Standard`
+  The SKU name of the container registry. Possible values are `Basic`, `Standard`
   and `Premium`.
 
 EOF
