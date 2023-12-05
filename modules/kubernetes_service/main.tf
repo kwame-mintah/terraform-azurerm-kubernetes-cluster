@@ -21,7 +21,6 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   automatic_channel_upgrade         = "stable"
   local_account_disabled            = true
   sku_tier                          = var.sku_tier
-  public_network_access_enabled     = true
   role_based_access_control_enabled = true
 
   api_server_access_profile {

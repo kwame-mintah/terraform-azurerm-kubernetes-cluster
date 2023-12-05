@@ -48,13 +48,13 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | = 1.4.5 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.58.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.82.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.82.0 |
 
 ## Modules
 
@@ -66,7 +66,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 | Name | Type |
 |------|------|
-| [azurerm_resource_group.resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/resource_group) | resource |
+| [azurerm_resource_group.resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/resource_group) | resource |
 
 ## Inputs
 
