@@ -54,3 +54,34 @@ EOF
   default = "public"
 
 }
+
+variable "environment" {
+  description = <<-EOF
+  The name of the _environment_ to help identify resources.
+
+EOF
+
+  type = string
+}
+
+variable "location" {
+  description = <<-EOF
+  The Azure Region where the Resource Group should exist. 
+  Changing this forces a new Resource Group to be created.
+
+EOF
+
+  type    = string
+  default = "West Europe"
+
+}
+
+variable "tags" {
+  description = <<-EOF
+    Tags to be added to resources created.
+    
+EOF
+
+  type    = map(string)
+  default = {}
+}

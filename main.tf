@@ -1,9 +1,13 @@
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-  features {}
-  tenant_id       = var.arm_tenant_id
-  client_id       = var.arm_client_id
-  client_secret   = var.arm_client_secret
-  subscription_id = var.arm_subscription_id
-  environment     = var.cloud_enviornment
+locals {
+  common_tags = merge(
+    var.tags
+  )
+}
+
+resource "azurerm_resource_group" "resource_group" {
+  name     = "ak8s-${var.environment}-resources"
+  location = var.location
+  tags = merge(
+    local.common_tags
+  )
 }
