@@ -1,3 +1,4 @@
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
 ## Requirements
 
 | Name | Version |
@@ -38,3 +39,4 @@ No modules.
 |------|-------------|
 | <a name="output_container_registry_id"></a> [container\_registry\_id](#output\_container\_registry\_id) | The ID of the Container Registry. |
 | <a name="output_container_registry_name"></a> [container\_registry\_name](#output\_container\_registry\_name) | The name of the Container Registry. |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
