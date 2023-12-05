@@ -4,13 +4,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | = 1.4.5 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.58.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.82.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.58.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.82.0 |
 
 ## Modules
 
@@ -20,8 +20,9 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_kubernetes_cluster.cluster](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/kubernetes_cluster) | resource |
-| [azurerm_role_assignment.example](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/role_assignment) | resource |
+| [azurerm_kubernetes_cluster.cluster](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/kubernetes_cluster) | resource |
+| [azurerm_role_assignment.kubernetes_role](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/data-sources/client_config) | data source |
 
 ## Inputs
 
