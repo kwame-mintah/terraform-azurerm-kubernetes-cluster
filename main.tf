@@ -18,6 +18,7 @@ module "python_fastapi_registry" {
   location                = var.location
   resource_group_name     = azurerm_resource_group.resource_group.name
   georeplication_location = "North Europe"
+  personal_ip_address     = var.personal_ip_address
 
   tags = merge(
     var.tags
