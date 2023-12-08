@@ -13,7 +13,7 @@ resource "azurerm_container_registry" "registry" {
   location                  = var.location
   sku                       = var.sku_name
   admin_enabled             = false
-  quarantine_policy_enabled = true
+  quarantine_policy_enabled = true # this is a preview feature at the moment.
   #checkov:skip=CKV_AZURE_139:Configured to reflect selected networks allowed.
   public_network_access_enabled = true
   network_rule_set {
