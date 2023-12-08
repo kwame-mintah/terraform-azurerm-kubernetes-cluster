@@ -21,7 +21,8 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_kubernetes_cluster.cluster](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/kubernetes_cluster) | resource |
-| [azurerm_role_assignment.kubernetes_role](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.acr_pull_role](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.acr_quarantine_role](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/data-sources/client_config) | data source |
 
 ## Inputs

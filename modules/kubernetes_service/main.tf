@@ -26,13 +26,18 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   role_based_access_control_enabled = true
 
   azure_active_directory_role_based_access_control {
+    azure_rbac_enabled     = true
     managed                = true
     tenant_id              = data.azurerm_client_config.current.tenant_id
-    admin_group_object_ids = [data.azurerm_client_config.current.object_id]
+    admin_group_object_ids = [data.azurerm_client_config.current.object_id, "1239ac97-8ed6-4088-9670-14c8e238aed8"]
   }
 
   api_server_access_profile {
-    authorized_ip_ranges = [var.personal_ip_address]
+    # Inbound connections originating from Azure DevOps 
+    # https://learn.microsoft.com/en-us/azure/devops/organizations/security/allow-list-ip-url?view=azure-devops&tabs=IP-V4#inbound-connections
+    # Azure IP Ranges and Service Tags – Public Cloud
+    # https://www.microsoft.com/en-us/download/details.aspx?id=56519
+    authorized_ip_ranges = [var.personal_ip_address, "20.166.41.0/24", "40.74.28.0/23"] # Western Europe, North Europe
   }
 
   network_profile {
@@ -65,7 +70,14 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   #checkov:skip=CKV_AZURE_227:Out of scope for demostration
 }
 
-resource "azurerm_role_assignment" "kubernetes_role" {
+resource "azurerm_role_assignment" "acr_quarantine_role" {
+  principal_id                     = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
+  role_definition_name             = "AcrQuarantineReader"
+  scope                            = var.container_registry_id
+  skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "acr_pull_role" {
   principal_id                     = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
   scope                            = var.container_registry_id
