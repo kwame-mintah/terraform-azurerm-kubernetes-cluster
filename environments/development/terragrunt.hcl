@@ -11,6 +11,7 @@ locals {
 # These are inputs that need to be passed for the terragrunt configuration
 inputs = {
   environment = "development"
+  project_name = "ak8s"
   tags = {
     Terraform   = "true"
     Environment = "${local.environment}"
