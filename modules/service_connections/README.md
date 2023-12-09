@@ -31,9 +31,6 @@ No modules.
 | [azurerm_container_registry_scope_map.registry_scope_map](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/container_registry_scope_map) | resource |
 | [azurerm_container_registry_token.registry_token](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/container_registry_token) | resource |
 | [azurerm_container_registry_token_password.token_password](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/container_registry_token_password) | resource |
-| [azurerm_role_assignment.aad_acr_pull](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
-| [azurerm_role_assignment.aad_acr_push](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
-| [azurerm_role_assignment.aad_acr_quarantine_reader](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
 | [random_uuid.uuid](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/uuid) | resource |
 | [time_rotating.token_password_expiry](https://registry.terraform.io/providers/hashicorp/time/0.10.0/docs/resources/rotating) | resource |
 | [azurerm_container_registry.registry](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/data-sources/container_registry) | data source |
@@ -45,16 +42,13 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_acr_registry_name"></a> [acr\_registry\_name](#input\_acr\_registry\_name) | The URL that can be used to log into the container registry. | `string` | n/a | yes |
 | <a name="input_azure_devops_project_id"></a> [azure\_devops\_project\_id](#input\_azure\_devops\_project\_id) | The project id within Azure DevOps. | `string` | n/a | yes |
-| <a name="input_client_id"></a> [client\_id](#input\_client\_id) |  | `string` | n/a | yes |
 | <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) |  | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | The name of the _environment_ to help identify resources. | `string` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | The name of the Azure DevOps project the resource belongs to. | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The Name of the Resource Group where the resource already exists. | `string` | n/a | yes |
+| <a name="input_service_principal_client_id"></a> [service\_principal\_client\_id](#input\_service\_principal\_client\_id) |  | `string` | n/a | yes |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_container_registry_password1_token_value"></a> [container\_registry\_password1\_token\_value](#output\_container\_registry\_password1\_token\_value) | The name of the Container Registry. |
-| <a name="output_container_registry_token_name"></a> [container\_registry\_token\_name](#output\_container\_registry\_token\_name) | The name of the Container Registry token. |
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

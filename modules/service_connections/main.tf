@@ -19,34 +19,12 @@ resource "azuredevops_serviceendpoint_azurerm" "azurerm_service_connection" {
   description                            = "Managed by Terraform for project: ${var.project}"
   service_endpoint_authentication_scheme = "ServicePrincipal"
   credentials {
-    serviceprincipalid  = var.client_id
+    serviceprincipalid  = var.service_principal_client_id
     serviceprincipalkey = var.client_secret
   }
   azurerm_spn_tenantid      = data.azurerm_subscription.current.tenant_id
   azurerm_subscription_id   = data.azurerm_subscription.current.subscription_id
   azurerm_subscription_name = data.azurerm_subscription.current.display_name
-}
-
-# Role assignments to registry
-resource "azurerm_role_assignment" "aad_acr_quarantine_reader" {
-  principal_id                     = var.client_id
-  role_definition_name             = "AcrQuarantineReader"
-  scope                            = data.azurerm_container_registry.registry.id
-  skip_service_principal_aad_check = true
-}
-
-resource "azurerm_role_assignment" "aad_acr_push" {
-  principal_id                     = var.client_id
-  role_definition_name             = "AcrPush"
-  scope                            = data.azurerm_container_registry.registry.id
-  skip_service_principal_aad_check = true
-}
-
-resource "azurerm_role_assignment" "aad_acr_pull" {
-  principal_id                     = var.client_id
-  role_definition_name             = "AcrPull"
-  scope                            = data.azurerm_container_registry.registry.id
-  skip_service_principal_aad_check = true
 }
 
 # Token generation
@@ -83,7 +61,7 @@ resource "time_rotating" "token_password_expiry" {
 resource "azuredevops_serviceendpoint_dockerregistry" "docker_registry_service_connection" {
   project_id            = var.azure_devops_project_id
   service_endpoint_name = "${data.azurerm_subscription.current.display_name} Docker Registry (Other) (${var.project}-${var.environment})"
-  docker_registry       = "https://${var.acr_registry_name}.azurecr.io/v1/"
+  docker_registry       = data.azurerm_container_registry.registry.login_server
   docker_username       = azurerm_container_registry_token.registry_token.name
   docker_password       = azurerm_container_registry_token_password.token_password.password1[0].value
   registry_type         = "Others"

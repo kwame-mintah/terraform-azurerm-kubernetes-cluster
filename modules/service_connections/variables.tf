@@ -34,7 +34,7 @@ EOF
   type = string
 }
 
-variable "client_id" {
+variable "client_secret" {
   description = <<-EOF
 
 EOF
@@ -42,7 +42,7 @@ EOF
   type = string
 }
 
-variable "client_secret" {
+variable "service_principal_client_id" {
   description = <<-EOF
 
 EOF
