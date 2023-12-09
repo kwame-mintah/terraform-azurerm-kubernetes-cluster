@@ -11,3 +11,12 @@ provider "azurerm" {
   subscription_id = var.arm_subscription_id
   environment     = var.cloud_enviornment
 }
+
+provider "azuredevops" {
+  org_service_url       = var.organization_url
+  personal_access_token = var.personal_access_token
+}
+
+data "azuredevops_project" "project" {
+  name = "k"
+}

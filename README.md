@@ -48,18 +48,25 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | = 1.4.5 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 2.46.0 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | = 0.8.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.82.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | 0.10.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
+| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.46.0 |
+| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 0.8.0 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.82.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.10.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_azure_devops_service_connections"></a> [azure\_devops\_service\_connections](#module\_azure\_devops\_service\_connections) | ./modules/service_connections | n/a |
 | <a name="module_kubernetes_cluster"></a> [kubernetes\_cluster](#module\_kubernetes\_cluster) | ./modules/kubernetes_service | n/a |
 | <a name="module_python_fastapi_registry"></a> [python\_fastapi\_registry](#module\_python\_fastapi\_registry) | ./modules/container_registry | n/a |
 
@@ -67,7 +74,13 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 | Name | Type |
 |------|------|
+| [azuread_application.aad_application](https://registry.terraform.io/providers/hashicorp/azuread/2.46.0/docs/resources/application) | resource |
+| [azuread_application_password.aad_application_password](https://registry.terraform.io/providers/hashicorp/azuread/2.46.0/docs/resources/application_password) | resource |
+| [azuread_service_principal.service_principal_application_id](https://registry.terraform.io/providers/hashicorp/azuread/2.46.0/docs/resources/service_principal) | resource |
 | [azurerm_resource_group.resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/resource_group) | resource |
+| [time_rotating.aad_application_password_rotation](https://registry.terraform.io/providers/hashicorp/time/0.10.0/docs/resources/rotating) | resource |
+| [azuread_client_config.current](https://registry.terraform.io/providers/hashicorp/azuread/2.46.0/docs/data-sources/client_config) | data source |
+| [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/0.8.0/docs/data-sources/project) | data source |
 
 ## Inputs
 
@@ -80,7 +93,10 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | <a name="input_cloud_enviornment"></a> [cloud\_enviornment](#input\_cloud\_enviornment) | The Cloud Environment which should be used. Possible values are public,<br>`usgovernment`, `german`, and `china`. Defaults to `public`. This can also be <br>sourced from the ARM\_ENVIRONMENT Environment Variable. | `string` | `"public"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | The name of the _environment_ to help identify resources. | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The Azure Region where the Resource Group should exist. <br>Changing this forces a new Resource Group to be created. | `string` | `"West Europe"` | no |
+| <a name="input_organization_url"></a> [organization\_url](#input\_organization\_url) | This is the Azure DevOps organization url. <br>It can also be sourced from the AZDO\_ORG\_SERVICE\_URL environment variable. | `string` | n/a | yes |
+| <a name="input_personal_access_token"></a> [personal\_access\_token](#input\_personal\_access\_token) | This is the Azure DevOps organization personal access token. <br>The account corresponding to the token will need "owner" privileges for this organization. <br>It can also be sourced from the AZDO\_PERSONAL\_ACCESS\_TOKEN environment variable. | `string` | n/a | yes |
 | <a name="input_personal_ip_address"></a> [personal\_ip\_address](#input\_personal\_ip\_address) | Add your client IP address to the networking to allow access. | `string` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Name of the project. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to resources created. | `map(string)` | `{}` | no |
 
 ## Outputs
