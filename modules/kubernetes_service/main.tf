@@ -51,8 +51,9 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     vm_size    = "Standard_D2_v2"
   }
 
-  identity {
-    type = "SystemAssigned"
+  service_principal {
+    client_id     = var.client_id
+    client_secret = var.client_secret
   }
 
   tags = merge(
@@ -68,18 +69,4 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   #checkov:skip=CKV_AZURE_172:Out of scope for demostration
   #checkov:skip=CKV_AZURE_226:Out of scope for demostration
   #checkov:skip=CKV_AZURE_227:Out of scope for demostration
-}
-
-resource "azurerm_role_assignment" "acr_quarantine_role" {
-  principal_id                     = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
-  role_definition_name             = "AcrQuarantineReader"
-  scope                            = var.container_registry_id
-  skip_service_principal_aad_check = true
-}
-
-resource "azurerm_role_assignment" "acr_pull_role" {
-  principal_id                     = azurerm_kubernetes_cluster.cluster.kubelet_identity[0].object_id
-  role_definition_name             = "AcrPull"
-  scope                            = var.container_registry_id
-  skip_service_principal_aad_check = true
 }

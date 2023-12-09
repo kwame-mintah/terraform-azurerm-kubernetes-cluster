@@ -1,7 +1,13 @@
-variable "container_registry_id" {
+variable "client_id" {
   description = <<-EOF
-  The scope at which the Role Assignment applies to.
-  Changing this forces a new resource to be created.
+
+EOF
+
+  type = string
+}
+
+variable "client_secret" {
+  description = <<-EOF
 
 EOF
 
