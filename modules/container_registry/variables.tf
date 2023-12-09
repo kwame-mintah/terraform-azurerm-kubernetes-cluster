@@ -1,3 +1,11 @@
+variable "client_id" {
+  description = <<-EOF
+
+EOF
+
+  type = string
+}
+
 variable "location" {
   description = <<-EOF
   The supported Azure location where the resource exists. 

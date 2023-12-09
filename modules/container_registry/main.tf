@@ -44,3 +44,25 @@ resource "azurerm_container_registry" "registry" {
     local.common_tags
   )
 }
+
+# Role assignments to registry
+resource "azurerm_role_assignment" "aad_acr_quarantine_reader" {
+  principal_id                     = var.client_id
+  role_definition_name             = "AcrQuarantineReader"
+  scope                            = azurerm_container_registry.registry.id
+  skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "aad_acr_push" {
+  principal_id                     = var.client_id
+  role_definition_name             = "AcrPush"
+  scope                            = azurerm_container_registry.registry.id
+  skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "aad_acr_pull" {
+  principal_id                     = var.client_id
+  role_definition_name             = "AcrPull"
+  scope                            = azurerm_container_registry.registry.id
+  skip_service_principal_aad_check = true
+}

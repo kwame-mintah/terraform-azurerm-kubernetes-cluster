@@ -21,11 +21,15 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_container_registry.registry](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/container_registry) | resource |
+| [azurerm_role_assignment.aad_acr_pull](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.aad_acr_push](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.aad_acr_quarantine_reader](https://registry.terraform.io/providers/hashicorp/azurerm/3.82.0/docs/resources/role_assignment) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_client_id"></a> [client\_id](#input\_client\_id) |  | `string` | n/a | yes |
 | <a name="input_georeplication_location"></a> [georeplication\_location](#input\_georeplication\_location) | A location where the container registry should be geo-replicated.<br>Cannot contain the location where the Container Registry exists. | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The supported Azure location where the resource exists. <br>Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Specifies the name of the Container Registry. <br>Only Alphanumeric characters allowed. Changing this forces a new <br>resource to be created. | `string` | n/a | yes |
