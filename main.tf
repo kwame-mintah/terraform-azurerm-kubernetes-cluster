@@ -51,11 +51,13 @@ module "python_fastapi_registry" {
   location                = var.location
   resource_group_name     = azurerm_resource_group.resource_group.name
   georeplication_location = "North Europe"
-  personal_ip_address     = var.personal_ip_address
+  service_principal_id    = azuread_service_principal.service_principal_application_id.object_id
 
   tags = merge(
     var.tags
   )
+
+  depends_on = [azuread_application.aad_application]
 }
 
 module "kubernetes_cluster" {
@@ -65,22 +67,24 @@ module "kubernetes_cluster" {
   resource_group_name = azurerm_resource_group.resource_group.name
   personal_ip_address = var.personal_ip_address
   client_id           = azuread_application.aad_application.application_id
+  client_object_id    = azuread_service_principal.service_principal_application_id.object_id
   client_secret       = azuread_application_password.aad_application_password.value
 
   tags = merge(
     var.tags
   )
+  depends_on = [azuread_application.aad_application]
 }
 
 module "azure_devops_service_connections" {
-  source                  = "./modules/service_connections"
-  resource_group_name     = azurerm_resource_group.resource_group.name
-  project                 = var.project_name
-  environment             = var.environment
-  azure_devops_project_id = data.azuredevops_project.project.id
-  acr_registry_name       = "pythonfastapik8s" # Same as the module python_fastapi_registry. 
-  client_id               = azuread_application.aad_application.application_id
-  client_secret           = azuread_application_password.aad_application_password.value
+  source                      = "./modules/service_connections"
+  resource_group_name         = azurerm_resource_group.resource_group.name
+  project                     = var.project_name
+  environment                 = var.environment
+  azure_devops_project_id     = data.azuredevops_project.project.id
+  acr_registry_name           = "pythonfastapik8s" # Same as the module python_fastapi_registry.
+  service_principal_client_id = azuread_application.aad_application.application_id
+  client_secret               = azuread_application_password.aad_application_password.value
 
-  depends_on = [module.python_fastapi_registry]
+  depends_on = [module.python_fastapi_registry, azuread_application.aad_application]
 }
