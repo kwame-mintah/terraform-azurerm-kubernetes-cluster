@@ -1,6 +1,7 @@
-variable "client_id" {
+variable "service_principal_id" {
   description = <<-EOF
-
+  The ID of the Principal (User, Group or Service Principal) to assign the Role Definition to. 
+  Changing this forces a new resource to be created.
 EOF
 
   type = string
@@ -66,13 +67,4 @@ EOF
 
   type    = map(string)
   default = {}
-}
-
-variable "personal_ip_address" {
-  description = <<-EOF
-    Add your client IP address to the networking to allow access.
-    
-EOF
-
-  type = string
 }
