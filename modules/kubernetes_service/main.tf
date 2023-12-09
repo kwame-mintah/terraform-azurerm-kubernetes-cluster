@@ -70,3 +70,31 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   #checkov:skip=CKV_AZURE_226:Out of scope for demostration
   #checkov:skip=CKV_AZURE_227:Out of scope for demostration
 }
+
+resource "azurerm_role_assignment" "aad_cluster_admin_role" {
+  principal_id                     = var.client_object_id
+  role_definition_name             = "Azure Kubernetes Service Cluster Admin Role"
+  scope                            = azurerm_kubernetes_cluster.cluster.id
+  skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "aad_cluster_rbac_admin" {
+  principal_id                     = var.client_object_id
+  role_definition_name             = "Azure Kubernetes Service RBAC Admin"
+  scope                            = azurerm_kubernetes_cluster.cluster.id
+  skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "aad_cluster_rbac_cluster_admin" {
+  principal_id                     = var.client_object_id
+  role_definition_name             = "Azure Kubernetes Service RBAC Cluster Admin"
+  scope                            = azurerm_kubernetes_cluster.cluster.id
+  skip_service_principal_aad_check = true
+}
+
+resource "azurerm_role_assignment" "aad_cluster_contributor" {
+  principal_id                     = var.client_object_id
+  role_definition_name             = "Azure Kubernetes Service Contributor Role"
+  scope                            = azurerm_kubernetes_cluster.cluster.id
+  skip_service_principal_aad_check = true
+}

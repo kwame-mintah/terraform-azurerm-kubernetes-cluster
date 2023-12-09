@@ -1,3 +1,11 @@
+variable "client_object_id" {
+  description = <<-EOF
+
+EOF
+
+  type = string
+}
+
 variable "client_id" {
   description = <<-EOF
 
