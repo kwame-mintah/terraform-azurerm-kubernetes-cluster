@@ -7,17 +7,6 @@ EOF
   type = string
 }
 
-variable "app_owners" {
-  description = <<-EOF
-    Add additional owners to the application registration,
-    by defualt the caller is added.
-    
-EOF
-
-  type    = string
-  default = ""
-}
-
 variable "acr_registry_name" {
   description = <<-EOF
     The URL that can be used to log into the container registry.
@@ -39,6 +28,22 @@ EOF
 variable "project" {
   description = <<-EOF
   The name of the Azure DevOps project the resource belongs to.
+
+EOF
+
+  type = string
+}
+
+variable "client_id" {
+  description = <<-EOF
+
+EOF
+
+  type = string
+}
+
+variable "client_secret" {
+  description = <<-EOF
 
 EOF
 
