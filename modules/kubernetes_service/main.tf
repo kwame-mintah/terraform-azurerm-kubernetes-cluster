@@ -30,7 +30,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     azure_rbac_enabled     = true
     managed                = true
     tenant_id              = data.azurerm_client_config.current.tenant_id
-    admin_group_object_ids = [data.azurerm_client_config.current.object_id, "1239ac97-8ed6-4088-9670-14c8e238aed8"]
+    admin_group_object_ids = [data.azurerm_client_config.current.object_id, "1239ac97-8ed6-4088-9670-14c8e238aed8"] # This is my own Object ID within my tenenat.
   }
 
   api_server_access_profile {
@@ -48,7 +48,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
 
   default_node_pool {
     name       = "default"
-    node_count = 1
+    node_count = 2
     vm_size    = "Standard_D2_v2"
   }
 
