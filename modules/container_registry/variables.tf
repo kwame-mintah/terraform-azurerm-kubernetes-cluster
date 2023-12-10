@@ -40,7 +40,7 @@ EOF
 
 variable "resource_group_name" {
   description = <<-EOF
-  The name of the resource group in which to create the Web App Bot. 
+  The name of the resource group in which to create the Container Registry.
   Changing this forces a new resource to be created.
 
 EOF

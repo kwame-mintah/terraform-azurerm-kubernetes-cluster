@@ -7,6 +7,7 @@ locals {
   )
 }
 
+# Create the Azure Container Registry
 resource "azurerm_container_registry" "registry" {
   name                = var.name
   resource_group_name = var.resource_group_name
@@ -19,10 +20,10 @@ resource "azurerm_container_registry" "registry" {
   public_network_access_enabled = true
   network_rule_set {
     default_action = "Allow"
-    # FIXME: Default should not be allow, but deny. This change requires knowing the load balancers
+    # FIXME: Default should be deny. But this change requires knowing the load balancers
     # IP Address(s) so they can pull the image from the azure registry.
     # https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/cannot-pull-image-from-acr-to-aks-cluster#solution-2-add-aks-load-balancers-public-ip-address-to-allowed-ip-address-range-of-the-container-registry
-    # 
+    # The loadbalancers and public addresses are created automatically during the kubernetes deployment.
   }
 
   retention_policy {
@@ -46,7 +47,7 @@ resource "azurerm_container_registry" "registry" {
   )
 }
 
-# Role assignments to registry
+# Role assignments for the azure active application 
 resource "azurerm_role_assignment" "aad_acr_quarantine_reader" {
   principal_id                     = var.service_principal_id
   role_definition_name             = "AcrQuarantineReader"
