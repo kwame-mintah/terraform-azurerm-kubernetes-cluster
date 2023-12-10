@@ -9,6 +9,7 @@ locals {
 
 data "azurerm_client_config" "current" {}
 
+# Create the Azure Kubernetes Cluster
 #tfsec appears to be scanning the wrong arguments as the names
 #have been updated / changed e.g. `api_server_access_profile` now contains
 #`authorized_ip_ranges` and `api_server_authorized_ip_ranges` is deperacated.
@@ -71,6 +72,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   #checkov:skip=CKV_AZURE_227:Out of scope for demostration
 }
 
+# Role assignments for the azure active application
 resource "azurerm_role_assignment" "aad_cluster_admin_role" {
   principal_id                     = var.client_object_id
   role_definition_name             = "Azure Kubernetes Service Cluster Admin Role"

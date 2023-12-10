@@ -1,6 +1,6 @@
 variable "client_object_id" {
   description = <<-EOF
-
+  The Client (Object) ID for the Service Principal.
 EOF
 
   type = string
@@ -8,7 +8,7 @@ EOF
 
 variable "client_id" {
   description = <<-EOF
-
+  The Client (Application) ID for the Service Principal.
 EOF
 
   type = string
@@ -16,7 +16,7 @@ EOF
 
 variable "client_secret" {
   description = <<-EOF
-
+  The Client Secret for the Service Principal.
 EOF
 
   type = string
@@ -24,7 +24,7 @@ EOF
 
 variable "location" {
   description = <<-EOF
-  The supported Azure location where the resource exists. 
+  The location where the Managed Kubernetes Cluster should be created.
   Changing this forces a new resource to be created.
 
 EOF
@@ -34,9 +34,8 @@ EOF
 
 variable "name" {
   description = <<-EOF
-  Specifies the name of the Container Registry. 
-  Only Alphanumeric characters allowed. Changing this forces a new 
-  resource to be created.
+  The name of the Managed Kubernetes Cluster to create. 
+  Changing this forces a new resource to be created.
 
 EOF
 
@@ -45,7 +44,7 @@ EOF
 
 variable "resource_group_name" {
   description = <<-EOF
-  The name of the resource group in which to create the Web App Bot. 
+  Specifies the Resource Group where the Managed Kubernetes Cluster should exist. 
   Changing this forces a new resource to be created.
 
 EOF
