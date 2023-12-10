@@ -1,6 +1,10 @@
 # Terraform Azure Kubernetes Cluster
 
-The main purpose of this repository is to create the resources needed to deploy a Kubernetes Cluster to Azure Kubernetes service. The deployed cluster will pull docker images from an Azure Container Registry.
+The main purpose of this repository is to create the resources needed to deploy a service to Azure Kubernetes service. The deployed cluster will pull docker images from an Azure Container Registry.
+
+## Architecture
+
+![](docs/azure_kubernetes_deployment_architecture.png)
 
 ## Development
 
