@@ -9,7 +9,7 @@ EOF
 
 variable "acr_registry_name" {
   description = <<-EOF
-    The URL that can be used to log into the container registry.
+    The name of the Azure Container Registry.
     
 EOF
 
@@ -36,7 +36,7 @@ EOF
 
 variable "client_secret" {
   description = <<-EOF
-
+  The service principal secret.
 EOF
 
   type = string
@@ -44,7 +44,7 @@ EOF
 
 variable "service_principal_client_id" {
   description = <<-EOF
-
+  The service principal application Id
 EOF
 
   type = string
@@ -52,7 +52,7 @@ EOF
 
 variable "resource_group_name" {
   description = <<-EOF
-  The Name of the Resource Group where the resource already exists.
+  The name of the Resource Group where the resource already exists.
 
 EOF
 
