@@ -1,6 +1,6 @@
-# Terraform Azurem Template
+# Terraform Azure Kubernetes Cluster
 
-The main purpose of this repository is to create a template for [Terraform](https://www.terraform.io/). This project will focus on the [Azurem](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0) provider.
+The main purpose of this repository is to create the resources needed to deploy a Kubernetes Cluster to Azure Kubernetes service. The deployed cluster will pull docker images from an Azure Container Registry.
 
 ## Development
 
@@ -22,8 +22,10 @@ The main purpose of this repository is to create a template for [Terraform](http
 2. Plan your changes with `terragrunt plan` to see what changes will be made,
 3. If you're happy with the changes `terragrunt apply`.
 
-Please note that `.tfstate` files are stored locally on your machine as no backend has been specified. If you would like to properly version control your state files, it is possible to use an S3 bucket to store these files. 
-This will ensure anyone else other than you running a plan/apply will always be using the same state file.
+> [!IMPORTANT]
+> 
+>Please note that `.tfstate` files are stored locally on your machine as no backend has been specified. If you would like to properly version control your state files, please configure an azure storage account to store these files. 
+> This will ensure anyone else other than you running a plan or apply will be using the same state file.
 
 ## Pre-Commit hooks
 
@@ -31,7 +33,7 @@ Git hook scripts are very helpful for identifying simple issues before pushing a
 
 To help with the maintenance of these hooks, [pre-commit](https://pre-commit.com/) is used, along with [pre-commit-hooks](https://pre-commit.com/#install).
 
-Please following [these instructions](https://pre-commit.com/#install) to install `pre-commit` locally and ensure that you have run `pre-commit install` to install the hooks for this project.
+Please follow [these instructions](https://pre-commit.com/#install) to install `pre-commit` locally and ensure that you have run `pre-commit install` to install the hooks for this project.
 
 Additionally, once installed, the hooks can be updated to the latest available version with `pre-commit autoupdate`.
 
@@ -103,5 +105,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 | Name | Description |
 |------|-------------|
+| <a name="output_azurerm_service_connection_id"></a> [azurerm\_service\_connection\_id](#output\_azurerm\_service\_connection\_id) | The ID of the azure resource manager service endpoint. |
+| <a name="output_docker_registry_service_connection_id"></a> [docker\_registry\_service\_connection\_id](#output\_docker\_registry\_service\_connection\_id) | The ID of the docker registry service endpoint. |
 | <a name="output_tenant_id"></a> [tenant\_id](#output\_tenant\_id) | The tenant ID used for this subscription. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

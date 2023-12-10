@@ -10,6 +10,7 @@ resource "azuread_application" "aad_application" {
   display_name            = "${var.project_name}-${var.environment}-apps"
   prevent_duplicate_names = true
   owners                  = [data.azuread_client_config.current.object_id, "1239ac97-8ed6-4088-9670-14c8e238aed8"] # This is my own Object ID within my tenenat.
+  description             = "Application registration created for project: ${var.project_name}"
 
   tags = [
     "Managed By Terraform",
