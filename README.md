@@ -50,6 +50,47 @@ The main resources created via this Terraform are:
 >Please note that `.tfstate` files are stored locally on your machine as no backend has been specified. If you would like to properly version control your state files, please configure an azure storage account to store these files. 
 > This will ensure anyone else other than you running a plan or apply will be using the same state file.
 
+## Cost
+
+A majority of the resources created will have either be 'Standard' or 'Premium' tier. Please be mindful of the cost for each tier, [Infracost](https://www.infracost.io/) has been used to help indicate how much it will cost to
+have all these resources created and running for a month.
+
+details>
+<summary>Predicted Infracost as of 12/12/2023</summary>
+
+  ```markdown
+   Name                                                                     Monthly Qty  Unit                  Monthly Cost
+
+  module.kubernetes_cluster.azurerm_kubernetes_cluster.cluster
+  ├─ Uptime SLA                                                                    730  hours                       $73.00
+  ├─ default_node_pool
+  │  ├─ Instance usage (Linux, pay as you go, Standard_D2_v2)                    1,460  hours                      $198.56
+  │  └─ os_disk
+  │     └─ Storage (S10, LRS)                                                        2  months                      $11.78
+  └─ Load Balancer
+      └─ Data processed                                                Monthly cost depends on usage: $0.005 per GB
+
+  module.python_fastapi_registry.azurerm_container_registry.registry
+  ├─ Geo replication (1 location)                                                   30  days                        $50.00
+  ├─ Registry usage (Premium)                                                       30  days                        $50.00
+  ├─ Storage (over 500GB)                                             Monthly cost depends on usage: $0.10 per GB
+  └─ Build vCPU                                                       Monthly cost depends on usage: $0.0001 per seconds
+
+  OVERALL TOTAL                                                                                                    $383.33
+  ──────────────────────────────────
+  13 cloud resources were detected:
+  ∙ 2 were estimated, all of which include usage-based costs, see https://infracost.io/usage-file
+  ∙ 10 were free:
+    ∙ 7 x azurerm_role_assignment
+    ∙ 1 x azurerm_container_registry_scope_map
+    ∙ 1 x azurerm_container_registry_token
+    ∙ 1 x azurerm_resource_group
+    ∙ 1 is not supported yet, see https://infracost.io/requested-resources:
+    ∙ 1 x azurerm_container_registry_token_password
+  ```
+
+</details>
+
 ## Pre-Commit hooks
 
 Git hook scripts are very helpful for identifying simple issues before pushing any changes. Hooks will run on every commit automatically pointing out issues in the code e.g. trailing whitespace.
