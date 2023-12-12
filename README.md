@@ -1,10 +1,29 @@
-# Terraform Azure Kubernetes Cluster
+# Terraform Azurerm Kubernetes Cluster
 
-The main purpose of this repository is to create the resources needed to deploy a service to Azure Kubernetes service. The deployed cluster will pull docker images from an Azure Container Registry.
+The main purpose of this repository is to create Azure resources needed to deploy a FastAPI service to Azure Kubernetes service. The code for the FastAPI service can be found [here](https://dev.azure.com/k-space/k/_git/python-fastapi-azure-k8s-cluster) [^1],
+the repository also contains Azure Pipelines to pull and push a docker image to the Azure Container Registry, and re-use use this image to deploy to the Kubernetes cluster.
+
+The main resources created via this Terraform are:
+- Azure Active Directory Applications (App registration and Enterprise application)
+- Azure Kubernetes Service
+- Azure Container Registry
+- Azure DevOps service connections
+
+> [!NOTE]
+>
+> This repository was created within Azure DevOps and is now being mirrored to this GitHub [repository](https://github.com/kwame-mintah/terraform-azurerm-kubernetes-cluster).
+> Source of truth will always be the Azure DevOps [repository](https://dev.azure.com/k-space/k/_git/k-infrastructure-terraform).
 
 ## Architecture
 
 ![](docs/azure_kubernetes_deployment_architecture.png)
+
+1. Developer makes changes to the source code then pushes changes.
+2. Azure pipeline triggered by new commit and starts a build on either Microsoft hosted agent or self-managed build agents.
+3. Azure build agent starts and runs unit tests within the repository.
+4. Azure pipeline creates a docker image, tags and pushed to an Azure container registry.
+5. Azure pipeline pulls the recently pushed image and deploys to Azure Kubernetes Cluster.
+6. Application is accessible from public URLs.
 
 ## Development
 
@@ -113,3 +132,5 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | <a name="output_docker_registry_service_connection_id"></a> [docker\_registry\_service\_connection\_id](#output\_docker\_registry\_service\_connection\_id) | The ID of the docker registry service endpoint. |
 | <a name="output_tenant_id"></a> [tenant\_id](#output\_tenant\_id) | The tenant ID used for this subscription. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+
+[^1]: My Azure DevOps organisation / project is private, FastAPI repository is mirrored [here](https://github.com/kwame-mintah/python-fastapi-azure-k8s-cluster) in GitHub.
