@@ -55,7 +55,7 @@ The main resources created via this Terraform are:
 A majority of the resources created will have either be 'Standard' or 'Premium' tier. Please be mindful of the cost for each tier, [Infracost](https://www.infracost.io/) has been used to help indicate how much it will cost to
 have all these resources created and running for a month.
 
-details>
+<details>
 <summary>Predicted Infracost as of 12/12/2023</summary>
 
   ```markdown
